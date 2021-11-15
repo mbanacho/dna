@@ -12,13 +12,6 @@ public class CustomExceptionHandler {
 
     @ExceptionHandler({IllegalArgumentException.class, ConstraintViolationException.class})
     public final ResponseEntity<ExceptionDto> handleException(Exception ex) {
-
-        if (ex instanceof IllegalArgumentException illegalArgumentException) {
-            return ResponseEntity.badRequest().body(new ExceptionDto(illegalArgumentException.getMessage()));
-        } else if (ex instanceof ConstraintViolationException constraintViolationException) {
-            return ResponseEntity.badRequest().body(new ExceptionDto(constraintViolationException.getMessage()));
-        } else {
-            return ResponseEntity.badRequest().body(new ExceptionDto(ex.getMessage()));
-        }
+        return ResponseEntity.badRequest().body(new ExceptionDto(ex.getMessage()));
     }
 }
